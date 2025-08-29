@@ -8,7 +8,7 @@ services:
     container_name: jimmy-ai-generator
     restart: unless-stopped
     ports:
-      - ""8080:80""
+      - "8080:80"
     environment:
       - TZ=Europe/Paris
       - APP_VERSION=3.0.0
@@ -28,25 +28,25 @@ services:
       - jimmy-network
     labels:
       # Traefik (si utilisé)
-      - ""traefik.enable=true""
-      - ""traefik.http.routers.jimmy-ai.rule=Host(`jimmy-ai.local`)""
-      - ""traefik.http.routers.jimmy-ai.tls=true""
-      - ""traefik.http.services.jimmy-ai.loadbalancer.server.port=80""
+      - "traefik.enable=true"
+      - "traefik.http.routers.jimmy-ai.rule=Host(`jimmy-ai.local`)"
+      - "traefik.http.routers.jimmy-ai.tls=true"
+      - "traefik.http.services.jimmy-ai.loadbalancer.server.port=80"
 
       # Portainer
-      - ""portainer.group=jimmy-tools""
-      - ""portainer.description=Générateur IA de lettres v3.0""
+      - "portainer.group=jimmy-tools"
+      - "portainer.description=Générateur IA de lettres v3.0"
     healthcheck:
-      test: [""CMD"", ""wget"", ""--quiet"", ""--tries=1"", ""--spider"", ""http://localhost/health""]
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost/health"]
       interval: 30s
       timeout: 10s
       retries: 3
       start_period: 40s
     logging:
-      driver: ""json-file""
+      driver: "json-file"
       options:
-        max-size: ""10m""
-        max-file: ""3""
+        max-size: "10m"
+        max-file: "3"
     deploy:
       resources:
         limits:
@@ -70,13 +70,13 @@ services:
       - BACKUP_SCHEDULE=0 2 * * *
     command: |
       sh -c '
-        echo ""Service de sauvegarde Jimmy démarré""
+        echo "Service de sauvegarde Jimmy démarré"
         while true; do
           sleep 86400
-          echo ""Création sauvegarde automatique...""
+          echo "Création sauvegarde automatique..."
           tar -czf /backups/jimmy-backup-$$(date +%Y%m%d-%H%M%S).tar.gz -C /source .
-          find /backups -name ""jimmy-backup-*.tar.gz"" -mtime +7 -delete
-          echo ""Sauvegarde terminée""
+          find /backups -name "jimmy-backup-*.tar.gz" -mtime +7 -delete
+          echo "Sauvegarde terminée"
         done
       '
     depends_on:
@@ -86,26 +86,26 @@ networks:
   jimmy-network:
     driver: bridge
     labels:
-      - ""description=Réseau dédié Jimmy AI Generator""
+      - "description=Réseau dédié Jimmy AI Generator"
 
 volumes:
   jimmy-userdata:
     driver: local
     labels:
-      - ""description=Données utilisateur et apprentissage IA""
+      - "description=Données utilisateur et apprentissage IA"
   jimmy-models:
     driver: local
     labels:
-      - ""description=Modèles TensorFlow.js""
+      - "description=Modèles TensorFlow.js"
   jimmy-logs:
     driver: local
     labels:
-      - ""description=Logs application et nginx""
+      - "description=Logs application et nginx"
   jimmy-cache:
     driver: local
     labels:
-      - ""description=Cache nginx""
+      - "description=Cache nginx"
   jimmy-backups:
     driver: local
     labels:
-      - ""description=Sauvegardes automatiques""
+      - "description=Sauvegardes automatiques"
