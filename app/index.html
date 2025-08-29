@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang=""fr"">
+<head>
+    <meta charset=""UTF-8"">
+    <meta name=""viewport"" content=""width=device-width, initial-scale=1.0"">
+    <title>Jimmy AI Letter Generator v3.0</title>
+    <meta name=""description"" content=""Générateur intelligent de lettres de motivation avec IA adaptative"">
+    <link rel=""stylesheet"" href=""style.css"">
+    <link rel=""icon"" type=""image/x-icon"" href=""data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚀</text></svg>"">
+</head>
+<body>
+    <div class=""app-container"">
+        <!-- Header principal -->
+        <header class=""app-header"">
+            <div class=""header-content"">
+                <h1>🤖 Jimmy AI Letter Generator</h1>
+                <p class=""subtitle"">Générateur adaptatif avec apprentissage automatique v3.0</p>
+                <div class=""ai-status"" id=""aiStatus"">
+                    <span class=""status-indicator""></span>
+                    <span class=""status-text"">IA Ready</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Navigation par onglets -->
+        <nav class=""tab-navigation"">
+            <button class=""tab-button active"" data-tab=""generator"">
+                <span class=""tab-icon"">🚀</span>
+                <span class=""tab-text"">Générateur IA</span>
+                <span class=""tab-badge hidden"" id=""generator-badge"">0</span>
+            </button>
+            <button class=""tab-button"" data-tab=""correction"">
+                <span class=""tab-icon"">✏️</span>
+                <span class=""tab-text"">Apprentissage</span>
+                <span class=""tab-badge hidden"" id=""correction-badge"">0</span>
+            </button>
+            <button class=""tab-button"" data-tab=""history"">
+                <span class=""tab-icon"">📋</span>
+                <span class=""tab-text"">Historique</span>
+                <span class=""tab-badge"" id=""history-badge"">0</span>
+            </button>
+            <button class=""tab-button"" data-tab=""kanban"">
+                <span class=""tab-icon"">📊</span>
+                <span class=""tab-text"">Kanban</span>
+                <span class=""tab-badge"" id=""kanban-badge"">0</span>
+            </button>
+            <button class=""tab-button"" data-tab=""analytics"">
+                <span class=""tab-icon"">📈</span>
+                <span class=""tab-text"">Analytics IA</span>
+                <span class=""tab-badge hidden"" id=""analytics-badge"">0</span>
+            </button>
+        </nav>
+
+        <!-- Contenu principal -->
+        <main class=""main-content"">
+
+            <!-- Onglet 1: Générateur IA -->
+            <section class=""tab-content active"" id=""generator-tab"">
+                <div class=""generator-container"">
+                    <!-- Étape 1: Analyse de l'annonce -->
+                    <div class=""step-panel active"" data-step=""1"">
+                        <header class=""step-header"">
+                            <h2>📝 Étape 1 : Analyse de l'offre d'emploi</h2>
+                            <div class=""step-indicator"">1/4</div>
+                        </header>
+
+                        <div class=""input-section"">
+                            <div class=""form-group"">
+                                <label for=""jobUrl"">🔗 URL de l'annonce (optionnel)</label>
+                                <input type=""url"" id=""jobUrl"" placeholder=""https://..."">
+                            </div>
+
+                            <div class=""form-group"">
+                                <label for=""jobText"">📄 Texte complet de l'annonce *</label>
+                                <textarea id=""jobText"" rows=""12"" placeholder=""Collez ici le texte complet de l'offre d'emploi...""></textarea>
+                            </div>
+
+                            <button class=""btn-primary"" id=""analyzeBtn"">
+                                <span class=""btn-icon"">🔍</span>
+                                Analyser l'annonce avec l'IA
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Étape 2: Scoring intelligent -->
+                    <div class=""step-panel hidden"" data-step=""2"">
+                        <header class=""step-header"">
+                            <h2>🎯 Étape 2 : Scoring et analyse IA</h2>
+                            <div class=""step-indicator"">2/4</div>
+                        </header>
+
+                        <div class=""analysis-results"" id=""analysisResults"">
+                            <div class=""extracted-info"">
+                                <h3>Informations extraites</h3>
+                                <div class=""info-grid"" id=""extractedInfo""></div>
+                            </div>
+
+                            <div class=""scoring-section"">
+                                <h3>Score d'attirance Jimmy</h3>
+                                <div class=""score-display"" id=""scoreDisplay"">
+                                    <div class=""score-circle"">
+                                        <span class=""score-value"" id=""scoreValue"">0</span>
+                                        <span class=""score-total"">/10</span>
+                                    </div>
+                                    <div class=""score-details"" id=""scoreDetails""></div>
+                                </div>
+                                <div class=""recommendation"" id=""recommendation""></div>
+                            </div>
+                        </div>
+
+                        <div class=""step-actions"">
+                            <button class=""btn-secondary"" onclick=""goToStep(1)"">← Retour</button>
+                            <button class=""btn-primary"" id=""continueToGeneration"">Continuer la génération</button>
+                        </div>
+                    </div>
+
+                    <!-- Étape 3: Génération IA -->
+                    <div class=""step-panel hidden"" data-step=""3"">
+                        <header class=""step-header"">
+                            <h2>🤖 Étape 3 : Génération avec IA adaptative</h2>
+                            <div class=""step-indicator"">3/4</div>
+                        </header>
+
+                        <div class=""ai-generation-status"" id=""generationStatus"">
+                            <div class=""loading-indicator"">
+                                <div class=""spinner""></div>
+                                <p>L'IA génère votre lettre personnalisée...</p>
+                            </div>
+                        </div>
+
+                        <div class=""generated-letter-container hidden"" id=""letterContainer"">
+                            <h3>Lettre générée</h3>
+                            <div class=""letter-preview"" id=""letterPreview""></div>
+
+                            <div class=""letter-actions"">
+                                <button class=""btn-secondary"" onclick=""regenerateLetter()"">🔄 Régénérer</button>
+                                <button class=""btn-primary"" onclick=""goToStep(4)"">Finaliser →</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Étape 4: Finalisation -->
+                    <div class=""step-panel hidden"" data-step=""4"">
+                        <header class=""step-header"">
+                            <h2>✅ Étape 4 : Finalisation et sauvegarde</h2>
+                            <div class=""step-indicator"">4/4</div>
+                        </header>
+
+                        <div class=""finalization-form"">
+                            <div class=""form-row"">
+                                <div class=""form-group"">
+                                    <label for=""applicationPriority"">Priorité</label>
+                                    <select id=""applicationPriority"">
+                                        <option value=""normal"">Normal</option>
+                                        <option value=""important"">Important</option>
+                                        <option value=""urgent"">Urgent</option>
+                                    </select>
+                                </div>
+
+                                <div class=""form-group"">
+                                    <label for=""initialStatus"">Statut initial</label>
+                                    <select id=""initialStatus"">
+                                        <option value=""a_preparer"">À préparer</option>
+                                        <option value=""envoye"">Envoyé</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class=""form-group"">
+                                <label for=""applicationNotes"">Notes personnelles</label>
+                                <textarea id=""applicationNotes"" rows=""3"" placeholder=""Remarques, contacts, informations complémentaires...""></textarea>
+                            </div>
+
+                            <div class=""final-actions"">
+                                <button class=""btn-secondary"" onclick=""goToStep(3)"">← Retour</button>
+                                <button class=""btn-success"" id=""saveApplication"">💾 Sauvegarder la candidature</button>
+                                <button class=""btn-primary"" id=""downloadLetter"">📄 Télécharger PDF</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Onglet 2: Apprentissage et corrections -->
+            <section class=""tab-content"" id=""correction-tab"">
+                <div class=""learning-container"">
+                    <header class=""section-header"">
+                        <h2>🧠 Système d'apprentissage adaptatif</h2>
+                        <p>Corrigez vos lettres pour améliorer l'IA</p>
+                    </header>
+
+                    <div class=""learning-interface"">
+                        <div class=""correction-selector"">
+                            <select id=""letterToCorrect"">
+                                <option value="""">Choisir une lettre à corriger...</option>
+                            </select>
+                        </div>
+
+                        <div class=""comparison-editor hidden"" id=""comparisonEditor"">
+                            <div class=""editor-panels"">
+                                <div class=""editor-panel"">
+                                    <h3>Version originale (IA)</h3>
+                                    <div class=""editor-original"" id=""editorOriginal""></div>
+                                </div>
+
+                                <div class=""editor-panel"">
+                                    <h3>Votre correction</h3>
+                                    <textarea class=""editor-corrected"" id=""editorCorrected"" placeholder=""Modifiez la lettre selon vos préférences...""></textarea>
+                                </div>
+                            </div>
+
+                            <div class=""feedback-section"">
+                                <h3>Évaluation de la génération</h3>
+                                <div class=""feedback-grid"">
+                                    <div class=""feedback-item"">
+                                        <label>Adéquation du ton</label>
+                                        <div class=""rating-stars"" data-rating=""tone_match""></div>
+                                    </div>
+                                    <div class=""feedback-item"">
+                                        <label>Pertinence du contenu</label>
+                                        <div class=""rating-stars"" data-rating=""content_relevance""></div>
+                                    </div>
+                                    <div class=""feedback-item"">
+                                        <label>Fluidité de la structure</label>
+                                        <div class=""rating-stars"" data-rating=""structure_flow""></div>
+                                    </div>
+                                    <div class=""feedback-item"">
+                                        <label>Richesse du vocabulaire</label>
+                                        <div class=""rating-stars"" data-rating=""vocabulary_richness""></div>
+                                    </div>
+                                </div>
+
+                                <div class=""feedback-actions"">
+                                    <button class=""btn-primary"" id=""analyzeCorrections"">🔍 Analyser les corrections</button>
+                                    <button class=""btn-success"" id=""saveCorrections"">💾 Enregistrer l'apprentissage</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class=""learning-insights"" id=""learningInsights"">
+                            <h3>Améliorations détectées</h3>
+                            <div class=""insights-list"" id=""insightsList""></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Onglet 3: Historique -->
+            <section class=""tab-content"" id=""history-tab"">
+                <div class=""history-container"">
+                    <header class=""section-header"">
+                        <h2>📋 Historique des candidatures</h2>
+                        <div class=""header-actions"">
+                            <button class=""btn-secondary"" id=""exportHistory"">📤 Exporter CSV</button>
+                            <button class=""btn-primary"" id=""clearHistory"">🗑️ Vider l'historique</button>
+                        </div>
+                    </header>
+
+                    <div class=""filters-section"">
+                        <div class=""filters-grid"">
+                            <input type=""text"" id=""searchHistory"" placeholder=""🔍 Rechercher..."">
+                            <select id=""filterStatus"">
+                                <option value="""">Tous les statuts</option>
+                            </select>
+                            <select id=""filterSector"">
+                                <option value="""">Tous les secteurs</option>
+                            </select>
+                            <select id=""filterScore"">
+                                <option value="""">Tous les scores</option>
+                                <option value=""high"">Score élevé (8-10)</option>
+                                <option value=""medium"">Score moyen (5-7)</option>
+                                <option value=""low"">Score faible (0-4)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class=""history-table-container"">
+                        <table class=""history-table"" id=""historyTable"">
+                            <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Entreprise</th>
+                                    <th>Poste</th>
+                                    <th>Secteur</th>
+                                    <th>Score</th>
+                                    <th>Statut</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id=""historyTableBody"">
+                                <!-- Données générées dynamiquement -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Onglet 4: Kanban -->
+            <section class=""tab-content"" id=""kanban-tab"">
+                <div class=""kanban-container"">
+                    <header class=""section-header"">
+                        <h2>📊 Tableau de suivi Kanban</h2>
+                        <div class=""kanban-controls"">
+                            <div class=""view-controls"">
+                                <button class=""control-btn active"" data-view=""all"">Tout</button>
+                                <button class=""control-btn"" data-view=""priority"">Priorité</button>
+                                <button class=""control-btn"" data-view=""recent"">Récent</button>
+                            </div>
+                        </div>
+                    </header>
+
+                    <div class=""kanban-board"" id=""kanbanBoard"">
+                        <!-- Colonnes générées dynamiquement -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- Onglet 5: Analytics IA -->
+            <section class=""tab-content"" id=""analytics-tab"">
+                <div class=""analytics-container"">
+                    <header class=""section-header"">
+                        <h2>📈 Analytics et apprentissage IA</h2>
+                        <div class=""analytics-period"">
+                            <select id=""analyticsPeriod"">
+                                <option value=""week"">Cette semaine</option>
+                                <option value=""month"" selected>Ce mois</option>
+                                <option value=""quarter"">Ce trimestre</option>
+                                <option value=""all"">Tout</option>
+                            </select>
+                        </div>
+                    </header>
+
+                    <div class=""metrics-grid"">
+                        <div class=""metric-card"">
+                            <h3>Amélioration IA</h3>
+                            <div class=""metric-value"" id=""aiImprovement"">+25%</div>
+                            <p>Satisfaction moyenne</p>
+                        </div>
+
+                        <div class=""metric-card"">
+                            <h3>Corrections apprises</h3>
+                            <div class=""metric-value"" id=""learningCount"">47</div>
+                            <p>Patterns identifiés</p>
+                        </div>
+
+                        <div class=""metric-card"">
+                            <h3>Style personnel</h3>
+                            <div class=""metric-value"" id=""styleEvolution"">92%</div>
+                            <p>Adaptation du modèle</p>
+                        </div>
+
+                        <div class=""metric-card"">
+                            <h3>Taux de réussite</h3>
+                            <div class=""metric-value"" id=""successRate"">15%</div>
+                            <p>Entretiens obtenus</p>
+                        </div>
+                    </div>
+
+                    <div class=""charts-section"">
+                        <div class=""chart-container"">
+                            <h3>Évolution de la satisfaction</h3>
+                            <canvas id=""satisfactionChart""></canvas>
+                        </div>
+
+                        <div class=""chart-container"">
+                            <h3>Types de corrections</h3>
+                            <canvas id=""correctionsChart""></canvas>
+                        </div>
+                    </div>
+
+                    <div class=""insights-section"">
+                        <h3>Insights personnalisés</h3>
+                        <div class=""insights-list"" id=""personalizedInsights"">
+                            <!-- Généré dynamiquement -->
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <!-- Modals -->
+    <div class=""modal hidden"" id=""applicationModal"">
+        <div class=""modal-content"">
+            <header class=""modal-header"">
+                <h2>Détails de la candidature</h2>
+                <button class=""modal-close"">&times;</button>
+            </header>
+            <div class=""modal-body"" id=""modalBody"">
+                <!-- Contenu dynamique -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src=""app.js""></script>
+</body>
+</html>
