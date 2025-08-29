@@ -1,5 +1,4 @@
-fichier,contenu,description
-README.md,"# 🚀 Jimmy AI Letter Generator v3.0
+# 🚀 Jimmy AI Letter Generator v3.0
 
 > Générateur intelligent de lettres de motivation avec IA adaptative et apprentissage automatique
 
