@@ -1,0 +1,51 @@
+version: '3.8'
+
+services:
+  generateur-lettres-jimmy:
+    image: nginx:alpine
+    container_name: generateur-lettres-jimmy
+    restart: unless-stopped
+    ports:
+      - "8080:80"
+    networks:
+      - jimmy-network
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.jimmy-letters.rule=Host(`letters.jimmy.local`)"
+      - "traefik.http.services.jimmy-letters.loadbalancer.server.port=80"
+    environment:
+      - NGINX_HOST=localhost
+      - NGINX_PORT=80
+    volumes:
+      - jimmy-app-data:/usr/share/nginx/html
+      - jimmy-nginx-config:/etc/nginx/conf.d
+      - jimmy-logs:/var/log/nginx
+    configs:
+      - source: jimmy-app-files
+        target: /usr/share/nginx/html
+      - source: jimmy-nginx-conf
+        target: /etc/nginx/nginx.conf
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:80"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+networks:
+  jimmy-network:
+    driver: bridge
+
+volumes:
+  jimmy-app-data:
+    driver: local
+  jimmy-nginx-config:
+    driver: local
+  jimmy-logs:
+    driver: local
+
+configs:
+  jimmy-app-files:
+    external: true
+  jimmy-nginx-conf:
+    external: true
