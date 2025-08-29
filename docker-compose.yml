@@ -1,51 +1,111 @@
-version: '3.8'
-
 services:
-  generateur-lettres-jimmy:
-    image: nginx:alpine
-    container_name: generateur-lettres-jimmy
+  jimmy-ai-generator:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        - APP_VERSION=3.0.0
+    container_name: jimmy-ai-generator
     restart: unless-stopped
     ports:
-      - "8080:80"
+      - ""8080:80""
+    environment:
+      - TZ=Europe/Paris
+      - APP_VERSION=3.0.0
+      - AI_ENABLED=true
+      - NODE_ENV=production
+    volumes:
+      # Application et données
+      - jimmy-userdata:/usr/share/nginx/html/data
+      - jimmy-models:/usr/share/nginx/html/models
+
+      # Logs pour monitoring
+      - jimmy-logs:/var/log/nginx
+
+      # Cache nginx
+      - jimmy-cache:/var/cache/nginx
     networks:
       - jimmy-network
     labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.jimmy-letters.rule=Host(`letters.jimmy.local`)"
-      - "traefik.http.services.jimmy-letters.loadbalancer.server.port=80"
-    environment:
-      - NGINX_HOST=localhost
-      - NGINX_PORT=80
-    volumes:
-      - jimmy-app-data:/usr/share/nginx/html
-      - jimmy-nginx-config:/etc/nginx/conf.d
-      - jimmy-logs:/var/log/nginx
-    configs:
-      - source: jimmy-app-files
-        target: /usr/share/nginx/html
-      - source: jimmy-nginx-conf
-        target: /etc/nginx/nginx.conf
+      # Traefik (si utilisé)
+      - ""traefik.enable=true""
+      - ""traefik.http.routers.jimmy-ai.rule=Host(`jimmy-ai.local`)""
+      - ""traefik.http.routers.jimmy-ai.tls=true""
+      - ""traefik.http.services.jimmy-ai.loadbalancer.server.port=80""
+
+      # Portainer
+      - ""portainer.group=jimmy-tools""
+      - ""portainer.description=Générateur IA de lettres v3.0""
     healthcheck:
-      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:80"]
+      test: [""CMD"", ""wget"", ""--quiet"", ""--tries=1"", ""--spider"", ""http://localhost/health""]
       interval: 30s
       timeout: 10s
       retries: 3
       start_period: 40s
+    logging:
+      driver: ""json-file""
+      options:
+        max-size: ""10m""
+        max-file: ""3""
+    deploy:
+      resources:
+        limits:
+          memory: 512M
+          cpus: '1.0'
+        reservations:
+          memory: 256M
+          cpus: '0.5'
+
+  # Service de sauvegarde (optionnel)
+  jimmy-backup:
+    image: alpine:latest
+    container_name: jimmy-backup
+    restart: unless-stopped
+    volumes:
+      - jimmy-userdata:/source/data:ro
+      - jimmy-logs:/source/logs:ro
+      - jimmy-backups:/backups
+    environment:
+      - TZ=Europe/Paris
+      - BACKUP_SCHEDULE=0 2 * * *
+    command: |
+      sh -c '
+        echo ""Service de sauvegarde Jimmy démarré""
+        while true; do
+          sleep 86400
+          echo ""Création sauvegarde automatique...""
+          tar -czf /backups/jimmy-backup-$$(date +%Y%m%d-%H%M%S).tar.gz -C /source .
+          find /backups -name ""jimmy-backup-*.tar.gz"" -mtime +7 -delete
+          echo ""Sauvegarde terminée""
+        done
+      '
+    depends_on:
+      - jimmy-ai-generator
 
 networks:
   jimmy-network:
     driver: bridge
+    labels:
+      - ""description=Réseau dédié Jimmy AI Generator""
 
 volumes:
-  jimmy-app-data:
+  jimmy-userdata:
     driver: local
-  jimmy-nginx-config:
+    labels:
+      - ""description=Données utilisateur et apprentissage IA""
+  jimmy-models:
     driver: local
+    labels:
+      - ""description=Modèles TensorFlow.js""
   jimmy-logs:
     driver: local
-
-configs:
-  jimmy-app-files:
-    external: true
-  jimmy-nginx-conf:
-    external: true
+    labels:
+      - ""description=Logs application et nginx""
+  jimmy-cache:
+    driver: local
+    labels:
+      - ""description=Cache nginx""
+  jimmy-backups:
+    driver: local
+    labels:
+      - ""description=Sauvegardes automatiques""
