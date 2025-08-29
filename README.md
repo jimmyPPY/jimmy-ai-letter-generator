@@ -1,4 +1,4 @@
-# 🚀 Jimmy AI Letter Generator v3.0
+# 🚀 AI Letter Generator v3.0
 
 > Générateur intelligent de lettres de motivation avec IA adaptative et apprentissage automatique
 
