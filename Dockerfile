@@ -1,8 +1,8 @@
 FROM nginx:1.25-alpine
 
 # Métadonnées
-LABEL maintainer=""Jimmy PAEPEGAEY <email@example.com>""
-LABEL description=""Générateur IA de lettres avec apprentissage adaptatif""
+LABEL maintainer="Jimmy PAEPEGAEY <email@example.com>"
+LABEL description="Générateur IA de lettres avec apprentissage adaptatif"
 LABEL version=""3.0.0""
 
 # Variables d'environnement
@@ -43,5 +43,5 @@ HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
     CMD wget --quiet --tries=1 --spider http://localhost/health || exit 1
 
 # Point d'entrée
-ENTRYPOINT [""/entrypoint.sh""]
-CMD [""nginx"", ""-g"", ""daemon off;""]
+ENTRYPOINT ["/entrypoint.sh"]
+CMD ["nginx", "-g", "daemon off;"]
