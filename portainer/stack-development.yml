@@ -1,0 +1,49 @@
+version: '3.8'
+
+services:
+  jimmy-ai-generator-dev:
+    image: ghcr.io/VOTRE_USERNAME/jimmy-ai-letter-generator:develop
+    container_name: jimmy-ai-development
+    restart: unless-stopped
+    ports:
+      - ""8081:80""
+    environment:
+      - TZ=Europe/Paris
+      - APP_VERSION=3.0.0-dev
+      - AI_ENABLED=true
+      - NODE_ENV=development
+      - DEBUG_MODE=true
+    volumes:
+      - jimmy-userdata-dev:/usr/share/nginx/html/data
+      - jimmy-models-dev:/usr/share/nginx/html/models
+      - jimmy-logs-dev:/var/log/nginx
+    networks:
+      - jimmy-network-dev
+    labels:
+      - ""traefik.enable=true""
+      - ""traefik.http.routers.jimmy-ai-dev.rule=Host(`dev-candidatures.mondomaine.com`)""
+      - ""traefik.http.services.jimmy-ai-dev.loadbalancer.server.port=80""
+      - ""portainer.group=development""
+      - ""portainer.description=Jimmy AI Letter Generator Development""
+    healthcheck:
+      test: [""CMD"", ""wget"", ""--quiet"", ""--tries=1"", ""--spider"", ""http://localhost/health""]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    logging:
+      driver: ""json-file""
+      options:
+        max-size: ""5m""
+        max-file: ""3""
+
+networks:
+  jimmy-network-dev:
+    driver: bridge
+
+volumes:
+  jimmy-userdata-dev:
+    driver: local
+  jimmy-models-dev:
+    driver: local  
+  jimmy-logs-dev:
+    driver: local
