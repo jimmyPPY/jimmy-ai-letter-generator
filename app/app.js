@@ -13,71 +13,71 @@ class JimmyAIGenerator {
         this.jimmyProfile = {
             realisations: {
                 transformation_appels: {
-                    description: ""Transformation centre d'appels"",
-                    chiffres: ""1,6M appels, -60% pertes"",
-                    impact: ""Réduction drastique des abandons""
+                    description: "Transformation centre d'appels",
+                    chiffres: "1,6M appels, -60% pertes",
+                    impact: "Réduction drastique des abandons"
                 },
                 management: {
-                    description: ""Management d'équipe"",
-                    chiffres: ""Jusqu'à 45 collaborateurs, 92% satisfaction"",
-                    impact: ""Excellence en leadership""
+                    description: "Management d'équipe",
+                    chiffres: "Jusqu'à 45 collaborateurs, 92% satisfaction",
+                    impact: "Excellence en leadership"
                 },
                 budget: {
-                    description: ""Gestion budgétaire"", 
-                    chiffres: ""Gestion 3M€, optimisation continue"",
-                    impact: ""Maîtrise financière démontrée""
+                    description: "Gestion budgétaire", 
+                    chiffres: "Gestion 3M€, optimisation continue",
+                    impact: "Maîtrise financière démontrée"
                 },
                 projets: {
-                    description: ""Projets complexes"",
-                    chiffres: ""Carve-in 2 sociétés, 15 agences intégrées"",
-                    impact: ""Expertise en intégration""
+                    description: "Projets complexes",
+                    chiffres: "Carve-in 2 sociétés, 15 agences intégrées",
+                    impact: "Expertise en intégration"
                 },
                 revenus: {
-                    description: ""Génération de revenus"",
-                    chiffres: ""10K€/mois offre cloud INEAT"",
-                    impact: ""Contribution directe au CA""
+                    description: "Génération de revenus",
+                    chiffres: "10K€/mois offre cloud INEAT",
+                    impact: "Contribution directe au CA"
                 },
                 croissance: {
-                    description: ""Croissance d'activité"",
-                    chiffres: ""+53% CA en 18 mois (1,5M€ → 2,3M€)"",
-                    impact: ""Accélération commerciale""
+                    description: "Croissance d'activité",
+                    chiffres: "+53% CA en 18 mois (1,5M€ → 2,3M€)",
+                    impact: "Accélération commerciale"
                 }
             },
             experience_sectorielle: {
-                defense: ""Armée de l'Air, projets sensibles"",
-                medical: ""ECHOSENS, diagnostic hépatique, normes FDA"",
-                services: ""LOGISTA HOMETECH, maintenance multi-technique"",
-                cloud_it: ""INEAT, infrastructure et services managés""
+                defense: "Armée de l'Air, projets sensibles",
+                medical: "ECHOSENS, diagnostic hépatique, normes FDA",
+                services: "LOGISTA HOMETECH, maintenance multi-technique",
+                cloud_it: "INEAT, infrastructure et services managés"
             },
             style_signature: {
-                ouverture: ""C'est avec un intérêt tout particulier"",
-                structure: ""Contexte → Défis → Solutions → Résultats"",
-                ton: ""Respectueux mais direct"",
-                formules: [""Fort de mon expérience"", ""Au regard de mes réalisations""]
+                ouverture: "C'est avec un intérêt tout particulier",
+                structure: "Contexte → Défis → Solutions → Résultats",
+                ton: "Respectueux mais direct",
+                formules: ["Fort de mon expérience", "Au regard de mes réalisations"]
             }
         };
 
         // Critères de scoring
         this.scoringCriteria = {
-            management: { points: 2, keywords: [""manager"", ""équipe"", ""collaborateurs"", ""encadrement"", ""management"", ""supervision""] },
-            medical_innovation: { points: 2, keywords: [""médical"", ""santé"", ""innovation"", ""R&D"", ""recherche"", ""technologie"", ""digital""] },
-            transformation: { points: 2, keywords: [""transformation"", ""projet"", ""changement"", ""conduite du changement"", ""réorganisation""] },
-            budget: { points: 1, keywords: [""budget"", ""coût"", ""rentabilité"", ""P&L"", ""résultat"", ""chiffre d'affaires"", ""ROI""] },
-            codir: { points: 1, keywords: [""direction"", ""codir"", ""comité"", ""conseil"", ""stratégique"", ""executives""] },
-            salaire: { points: 1, patterns: [""80k"", ""80000"", ""100k"", ""120k"", ""€80"", ""k€80""] },
-            location: { points: 1, zones: [""paris"", ""ile-de-france"", ""hauts-de-france"", ""nord"", ""lille"", ""remote"", ""télétravail""] }
+            management: { points: 2, keywords: ["manager", "équipe", "collaborateurs", "encadrement", "management", "supervision"] },
+            medical_innovation: { points: 2, keywords: ["médical", "santé", "innovation", "R&D", "recherche", "technologie", "digital"] },
+            transformation: { points: 2, keywords: ["transformation", "projet", "changement", "conduite du changement", "réorganisation"] },
+            budget: { points: 1, keywords: ["budget", "coût", "rentabilité", "P&L", "résultat", "chiffre d'affaires", "ROI"] },
+            codir: { points: 1, keywords: ["direction", "codir", "comité", "conseil", "stratégique", "executives"] },
+            salaire: { points: 1, patterns: ["80k", "80000", "100k", "120k", "€80", "k€80"] },
+            location: { points: 1, zones: ["paris", "ile-de-france", "hauts-de-france", "nord", "lille", "remote", "télétravail"] }
         };
 
         // Colonnes Kanban
         this.kanbanColumns = [
-            { id: ""a_preparer"", title: ""À préparer"", color: ""#6B7280"" },
-            { id: ""envoye"", title: ""Envoyé"", color: ""#3B82F6"" },
-            { id: ""relance"", title: ""Relance"", color: ""#F59E0B"" },
-            { id: ""entretien"", title: ""Entretien"", color: ""#8B5CF6"" },
-            { id: ""en_attente"", title: ""En attente"", color: ""#F97316"" },
-            { id: ""accepte"", title: ""Accepté"", color: ""#10B981"" },
-            { id: ""refuse"", title: ""Refusé"", color: ""#EF4444"" },
-            { id: ""archive"", title: ""Archivé"", color: ""#6B7280"" }
+            { id: "a_preparer", title: "À préparer", color: "#6B7280" },
+            { id: "envoye", title: "Envoyé", color: "#3B82F6" },
+            { id: "relance", title: "Relance", color: "#F59E0B" },
+            { id: "entretien", title: "Entretien", color: "#8B5CF6" },
+            { id: "en_attente", title: "En attente", color: "#F97316" },
+            { id: "accepte", title: "Accepté", color: "#10B981" },
+            { id: "refuse", title: "Refusé", color: "#EF4444" },
+            { id: "archive", title: "Archivé", color: "#6B7280" }
         ];
 
         this.init();
@@ -90,8 +90,8 @@ class JimmyAIGenerator {
         this.initializeAI();
         this.updateBadges();
 
-        console.log(""🚀 Jimmy AI Generator v3.0 initialized"");
-        this.updateAIStatus(""ready"");
+        console.log("🚀 Jimmy AI Generator v3.0 initialized");
+        this.updateAIStatus("ready");
     }
 
     // === GESTION DES DONNÉES ===
@@ -335,10 +335,10 @@ class JimmyAIGenerator {
 
     detectSector(text) {
         const sectors = {
-            medical: [""médical"", ""santé"", ""pharmaceutique"", ""hôpital"", ""clinique"", ""diagnostic"", ""thérapeutique""],
-            it: [""informatique"", ""développeur"", ""software"", ""cloud"", ""infrastructure"", ""digital"", ""numérique"", ""tech""],
-            defense: [""défense"", ""militaire"", ""sécurité"", ""armée"", ""aeronautique"", ""spatial""],
-            services: [""service"", ""maintenance"", ""support"", ""conseil"", ""consulting"", ""assistance""]
+            medical: ["médical", "santé", "pharmaceutique", "hôpital", "clinique", "diagnostic", "thérapeutique"],
+            it: ["informatique", "développeur", "software", "cloud", "infrastructure", "digital", "numérique", "tech"],
+            defense: ["défense", "militaire", "sécurité", "armée", "aeronautique", "spatial"],
+            services: ["service", "maintenance", "support", "conseil", "consulting", "assistance"]
         };
 
         const textLower = text.toLowerCase();
@@ -362,8 +362,8 @@ class JimmyAIGenerator {
             const infoItem = document.createElement('div');
             infoItem.className = 'info-item';
             infoItem.innerHTML = `
-                <div class=""info-label"">${this.getInfoLabel(key)}</div>
-                <div class=""info-value"">${value}</div>
+                <div class="info-label">${this.getInfoLabel(key)}</div>
+                <div class="info-value">${value}</div>
             `;
             infoContainer.appendChild(infoItem);
         });
@@ -386,7 +386,7 @@ class JimmyAIGenerator {
             scoreItem.className = 'score-item';
             scoreItem.innerHTML = `
                 <span>${this.getCriterionLabel(detail.criterion)}</span>
-                <span class=""score-points"">+${detail.points} pt${detail.points > 1 ? 's' : ''}</span>
+                <span class="score-points">+${detail.points} pt${detail.points > 1 ? 's' : ''}</span>
             `;
             scoreDetails.appendChild(scoreItem);
         });
@@ -558,10 +558,10 @@ class JimmyAIGenerator {
 
     buildContextSection(company, sector, adaptedStyle) {
         const sectorContext = {
-            medical: ""Dans un contexte de transformation digitale du secteur de la santé"",
-            it: ""Face aux enjeux de transformation numérique et d'innovation technologique"",
-            services: ""Dans un environnement de service client en constante évolution"",
-            general: ""Dans le contexte actuel de transformation des entreprises""
+            medical: "Dans un contexte de transformation digitale du secteur de la santé",
+            it: "Face aux enjeux de transformation numérique et d'innovation technologique",
+            services: "Dans un environnement de service client en constante évolution",
+            general: "Dans le contexte actuel de transformation des entreprises"
         };
 
         return `${sectorContext[sector] || sectorContext.general}, ${company} représente pour moi une opportunité exceptionnelle de mettre mon expertise au service d'une organisation à fort potentiel.
@@ -570,9 +570,9 @@ class JimmyAIGenerator {
     }
 
     buildChallengesSection(analysis, adaptedStyle) {
-        let section = ""Fort de mon expérience en management opérationnel et transformation d'entreprise, j'identifie dans votre annonce des enjeux qui correspondent parfaitement à mon parcours :
+        let section = "Fort de mon expérience en management opérationnel et transformation d'entreprise, j'identifie dans votre annonce des enjeux qui correspondent parfaitement à mon parcours :
 
-"";
+";
 
         analysis.score.details.forEach(detail => {
             const challengeText = this.getChallengeText(detail.criterion);
@@ -582,30 +582,30 @@ class JimmyAIGenerator {
             }
         });
 
-        return section + ""
-"";
+        return section + "
+";
     }
 
     buildAchievementsSection(achievements, adaptedStyle) {
-        let section = ""Mes réalisations concrètes illustrent ma capacité à générer des résultats mesurables :
+        let section = "Mes réalisations concrètes illustrent ma capacité à générer des résultats mesurables :
 
-"";
+";
 
         achievements.forEach(achievement => {
             section += `• **${achievement.description}** : ${achievement.chiffres} - ${achievement.impact}
 `;
         });
 
-        return section + ""
-"";
+        return section + "
+";
     }
 
     buildContributionSection(position, sector, adaptedStyle) {
         const contributions = {
-            medical: ""contribuer à l'excellence opérationnelle et à l'innovation dans le domaine de la santé"",
-            it: ""accélérer la transformation digitale et optimiser les performances techniques"",
-            services: ""améliorer l'expérience client et l'efficacité opérationnelle"",
-            general: ""optimiser les performances et accompagner la croissance""
+            medical: "contribuer à l'excellence opérationnelle et à l'innovation dans le domaine de la santé",
+            it: "accélérer la transformation digitale et optimiser les performances techniques",
+            services: "améliorer l'expérience client et l'efficacité opérationnelle",
+            general: "optimiser les performances et accompagner la croissance"
         };
 
         return `En tant que ${position}, je pourrai ${contributions[sector] || contributions.general}, en m'appuyant sur ma vision stratégique et mon approche orientée résultats.
@@ -790,11 +790,11 @@ class JimmyAIGenerator {
             const insight = document.createElement('div');
             insight.className = 'insight-item';
             insight.innerHTML = `
-                <span class=""insight-icon"">📝</span>
-                <div class=""insight-content"">
-                    <div class=""insight-title"">Amélioration vocabulaire</div>
-                    <div class=""insight-description"">
-                        Remplacement de ""${original}"" par ""${replacement}""
+                <span class="insight-icon">📝</span>
+                <div class="insight-content">
+                    <div class="insight-title">Amélioration vocabulaire</div>
+                    <div class="insight-description">
+                        Remplacement de "${original}" par "${replacement}"
                     </div>
                 </div>
             `;
@@ -806,10 +806,10 @@ class JimmyAIGenerator {
             const insight = document.createElement('div');
             insight.className = 'insight-item';
             insight.innerHTML = `
-                <span class=""insight-icon"">🏗️</span>
-                <div class=""insight-content"">
-                    <div class=""insight-title"">Modification structure</div>
-                    <div class=""insight-description"">
+                <span class="insight-icon">🏗️</span>
+                <div class="insight-content">
+                    <div class="insight-title">Modification structure</div>
+                    <div class="insight-description">
                         ${change.change > 0 ? 'Ajout' : 'Suppression'} de ${Math.abs(change.change)} phrase(s)
                     </div>
                 </div>
@@ -880,14 +880,14 @@ class JimmyAIGenerator {
         const apps = [...this.applications.values()].filter(app => app.status === column.id);
 
         columnDiv.innerHTML = `
-            <div class=""column-header"" style=""border-top: 3px solid ${column.color}"">
-                <div class=""column-title"">
-                    <span style=""color: ${column.color}"">●</span>
+            <div class="column-header" style="border-top: 3px solid ${column.color}">
+                <div class="column-title">
+                    <span style="color: ${column.color}">●</span>
                     ${column.title}
                 </div>
-                <div class=""column-count"">${apps.length}</div>
+                <div class="column-count">${apps.length}</div>
             </div>
-            <div class=""cards-container"" data-status=""${column.id}"">
+            <div class="cards-container" data-status="${column.id}">
                 <!-- Cards will be populated here -->
             </div>
         `;
@@ -904,7 +904,7 @@ class JimmyAIGenerator {
         // Ajouter les cartes
         [...this.applications.values()].forEach(app => {
             const card = this.createKanbanCard(app);
-            const container = document.querySelector(`.cards-container[data-status=""${app.status}""]`);
+            const container = document.querySelector(`.cards-container[data-status="${app.status}"]`);
             if (container) {
                 container.appendChild(card);
             }
@@ -923,14 +923,14 @@ class JimmyAIGenerator {
         const daysAgo = Math.floor((new Date() - new Date(app.createdAt)) / (1000 * 60 * 60 * 24));
 
         card.innerHTML = `
-            <div class=""card-header"">
-                <div class=""card-company"">${app.company}</div>
-                <div class=""card-date"">${daysAgo}j</div>
+            <div class="card-header">
+                <div class="card-company">${app.company}</div>
+                <div class="card-date">${daysAgo}j</div>
             </div>
-            <div class=""card-position"">${app.position}</div>
-            <div class=""card-footer"">
-                <div class=""card-score"">${app.score}/10</div>
-                <div class=""priority-indicator priority-${app.priority}""></div>
+            <div class="card-position">${app.position}</div>
+            <div class="card-footer">
+                <div class="card-score">${app.score}/10</div>
+                <div class="priority-indicator priority-${app.priority}"></div>
             </div>
         `;
 
@@ -990,7 +990,7 @@ class JimmyAIGenerator {
         app.history.push({
             date: new Date().toISOString(),
             status: newStatus,
-            action: `Déplacé de ""${this.getStatusLabel(oldStatus)}"" vers ""${this.getStatusLabel(newStatus)}""`
+            action: `Déplacé de "${this.getStatusLabel(oldStatus)}" vers "${this.getStatusLabel(newStatus)}"`
         });
 
         this.applications.set(appId, app);
@@ -1016,12 +1016,12 @@ class JimmyAIGenerator {
                 <td>${app.company}</td>
                 <td>${app.position}</td>
                 <td>${this.getSectorLabel(app.sector)}</td>
-                <td><span class=""score-badge"">${app.score}/10</span></td>
-                <td><span class=""status-badge status-${app.status}"">${this.getStatusLabel(app.status)}</span></td>
+                <td><span class="score-badge">${app.score}/10</span></td>
+                <td><span class="status-badge status-${app.status}">${this.getStatusLabel(app.status)}</span></td>
                 <td>
-                    <button class=""btn-sm"" onclick=""app.showApplicationDetails('${app.id}')"">👁️</button>
-                    <button class=""btn-sm"" onclick=""app.editApplication('${app.id}')"">✏️</button>
-                    <button class=""btn-sm btn-danger"" onclick=""app.deleteApplication('${app.id}')"">🗑️</button>
+                    <button class="btn-sm" onclick="app.showApplicationDetails('${app.id}')">👁️</button>
+                    <button class="btn-sm" onclick="app.editApplication('${app.id}')">✏️</button>
+                    <button class="btn-sm btn-danger" onclick="app.deleteApplication('${app.id}')">🗑️</button>
                 </td>
             `;
             tableBody.appendChild(row);
@@ -1145,7 +1145,7 @@ class JimmyAIGenerator {
         });
 
         // Afficher le panneau cible
-        document.querySelector(`[data-step=""${step}""]`).classList.remove('hidden');
+        document.querySelector(`[data-step="${step}"]`).classList.remove('hidden');
         this.currentStep = step;
     }
 
@@ -1184,11 +1184,11 @@ class JimmyAIGenerator {
 
     getChallengeText(criterion) {
         const challenges = {
-            management: ""Développement et animation d'équipes performantes"",
-            medical_innovation: ""Innovation dans le secteur de la santé"",
-            transformation: ""Conduite du changement et transformation organisationnelle"",
-            budget: ""Pilotage financier et optimisation budgétaire"",
-            codir: ""Collaboration avec les instances dirigeantes""
+            management: "Développement et animation d'équipes performantes",
+            medical_innovation: "Innovation dans le secteur de la santé",
+            transformation: "Conduite du changement et transformation organisationnelle",
+            budget: "Pilotage financier et optimisation budgétaire",
+            codir: "Collaboration avec les instances dirigeantes"
         };
         return challenges[criterion];
     }
@@ -1227,9 +1227,9 @@ class JimmyAIGenerator {
         const modalBody = document.getElementById('modalBody');
 
         modalBody.innerHTML = `
-            <div class=""app-details"">
+            <div class="app-details">
                 <h3>${app.company} - ${app.position}</h3>
-                <div class=""detail-grid"">
+                <div class="detail-grid">
                     <div><strong>Secteur:</strong> ${this.getSectorLabel(app.sector)}</div>
                     <div><strong>Score:</strong> ${app.score}/10</div>
                     <div><strong>Priorité:</strong> ${app.priority}</div>
@@ -1237,9 +1237,9 @@ class JimmyAIGenerator {
                     <div><strong>Créé:</strong> ${new Date(app.createdAt).toLocaleDateString('fr-FR')}</div>
                     <div><strong>Modifié:</strong> ${new Date(app.updatedAt).toLocaleDateString('fr-FR')}</div>
                 </div>
-                <div class=""letter-preview"">
+                <div class="letter-preview">
                     <h4>Lettre de motivation</h4>
-                    <div class=""letter-content"">${app.letterContent}</div>
+                    <div class="letter-content">${app.letterContent}</div>
                 </div>
             </div>
         `;
@@ -1304,4 +1304,4 @@ document.querySelectorAll('.rating-stars').forEach(container => {
     }
 });
 
-console.log('🚀 Jimmy AI Generator v3.0 loaded');
+console.log('🚀 Jimmy AI Generator v3.0 loaded');"
